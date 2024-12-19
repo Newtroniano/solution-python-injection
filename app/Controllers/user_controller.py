@@ -2,6 +2,8 @@
 
 from app.Models.user_model import User
 from app import db
+import pandas as pd
+
 
 class UserController:
     @staticmethod
@@ -41,3 +43,28 @@ class UserController:
             db.session.commit()
             return True
         return False
+
+    def insert_data_from_excel(file_path):
+        try:
+            xls = pd.ExcelFile(file_path, engine='openpyxl')
+            sheet_names = xls.sheet_names
+
+            for sheet_name in sheet_names:
+                df = xls.parse(sheet_name)
+
+                for index, row in df.iterrows():
+                    new_user = User(
+                        username=row['username'],  
+                        email=row['email'] , 
+                        password=row['password'] 
+                    )
+
+                    db.session.add(new_user)
+
+            db.session.commit()
+
+            return {"message": "Data inserted successfully!"}, 200
+
+        except Exception as e:
+            db.session.rollback()
+            return {"message": f"An error occurred: {str(e)}"}, 500

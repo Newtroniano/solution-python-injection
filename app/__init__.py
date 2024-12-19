@@ -12,6 +12,9 @@ def create_app():
     db.init_app(app)
     
     from .routes.user import main as user_routes_blueprint
+    from .routes.upload import upload_routes as upload_routes_blueprint
     app.register_blueprint(user_routes_blueprint, url_prefix='/api')
+    app.register_blueprint(upload_routes_blueprint, url_prefix='/api')
+
     
     return app
