@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 upload_routes = Blueprint('upload_routes', __name__)
 
 UPLOAD_FOLDER = 'uploads'  
-ALLOWED_EXTENSIONS = {'xlsx'}  
+ALLOWED_EXTENSIONS = {'xlsx'} 
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)

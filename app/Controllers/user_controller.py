@@ -3,7 +3,7 @@
 from app.Models.user_model import User
 from app import db
 import pandas as pd
-
+from flask import jsonify
 
 class UserController:
     @staticmethod
@@ -52,16 +52,19 @@ class UserController:
             for sheet_name in sheet_names:
                 df = xls.parse(sheet_name)
 
-                for index, row in df.iterrows():
-                    new_user = User(
-                        username=row['username'],  
-                        email=row['email'] , 
-                        password=row['password'] 
-                    )
+                # Verifica o nome da planilha para determinar qual tabela usar
+                table_name = sheet_name.lower().replace(' ', '_')  # Converte para o formato de nome da tabela
+                model_class = globals().get(table_name.capitalize())
 
-                    db.session.add(new_user)
+                if model_class:
+                    # Itera sobre os registros do DataFrame e insere no banco de dados
+                    for index, row in df.iterrows():
+                        new_entry = model_class(**row.to_dict())
+                        db.session.add(new_entry)
 
-            db.session.commit()
+                    db.session.commit()
+                else:
+                    return {"message": f"Table model '{table_name.capitalize()}' not found."}, 400
 
             return {"message": "Data inserted successfully!"}, 200
 
