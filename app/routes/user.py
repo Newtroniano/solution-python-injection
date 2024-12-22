@@ -1,16 +1,14 @@
-from flask import jsonify, request, Blueprint
+from flask import Blueprint, jsonify
 from app.Controllers.user_controller import UserController
 
-user = Blueprint('user', __name__)
+main = Blueprint('main', __name__)
 
-# Rota para obter todos os usuários
-@user.route('/users', methods=['GET'])
+@main.route('/users', methods=['GET'])
 def get_users():
     users = UserController.get_all_users()
     return jsonify(users=users)
 
-# Rota para obter um usuário específico pelo ID
-@user.route('/users/<int:user_id>', methods=['GET'])
+@main.route('/users/<int:user_id>', methods=['GET'])
 def get_user(user_id):
     user = UserController.get_user_by_id(user_id)
     if user:
