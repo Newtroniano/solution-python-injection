@@ -3,8 +3,8 @@ import os
 class Config:
     SECRET_KEY = os.urandom(24)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:luis123@localhost:3306/game_db'
-
+    SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://sa:luis123@DESKTOP-VS367GK/game_db?driver=ODBC+Driver+17+for+SQL+Server'
+    
 class DevelopmentConfig(Config):
     DEBUG = True
 

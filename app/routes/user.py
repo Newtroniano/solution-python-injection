@@ -5,8 +5,15 @@ main = Blueprint('main', __name__)
 
 @main.route('/users', methods=['GET'])
 def get_users():
-    users = UserController.get_all_users()
-    return jsonify(users=users)
+    prod = UserController.get_all_users()
+    return jsonify(prod=prod)
+
+
+@main.route('/games', methods=['GET'])
+def get_games():
+    prod = UserController.get_all_games()
+    return jsonify(prod=prod)
+
 
 @main.route('/users/<int:user_id>', methods=['GET'])
 def get_user(user_id):
