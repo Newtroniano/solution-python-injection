@@ -9,9 +9,35 @@ from flask import jsonify
 
 class UserController:
     # @staticmethod
-    # def get_all_users():
-        
-    #     return [user.to_dict() for user in User.query.all()]
+    def get_all_users():
+        try:
+            users = User.query.all()
+            
+            columns = [column.name for column in User.__table__.columns]
+            
+            records = [user.to_dict() for user in users]
+            
+            return {
+                "columns": columns,  
+                "records": records   
+            }
+        except Exception as e:
+            return {"error": str(e)}
+    
+    def get_all_games():
+        try:
+            games = Games.query.all()
+            
+            columns = [column.name for column in Games.__table__.columns]
+            
+            records = [game.to_dict() for game in games]
+            
+            return {
+                "columns": columns,  
+                "records": records   
+            }
+        except Exception as e:
+            return {"error": str(e)}
 
     # @staticmethod
     # def get_user_by_id(user_id):
