@@ -55,7 +55,3 @@ if st.button("Carregar Dados"):
     else:
         st.warning("Por favor, insira o nome de uma tabela.")
 
-# st.title("Painel de Upload")
-# result = upload_file()
-# if result:
-#     st.write("Resultado do Backend:", result)
