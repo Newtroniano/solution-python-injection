@@ -3,7 +3,7 @@
 ## Introdução
 Este projeto consiste em uma API RESTful desenvolvida em Python utilizando Flask RESTful e o padrão de injeção de dependências. A solução tem como objetivo principal migrar dados armazenados em arquivos Excel para um banco de dados e gerenciá-los por meio de uma API estruturada e flexível.
 
-O repositório original pode ser acessado em: [GitHub - solution-python-injection](https://github.com/Newtroniano/solution-python-injection)
+A documentação pode ser acessada em: [solution-python-injection](https://docs.google.com/document/d/1RhJq_rF3GSZz9ygavwMX_POhPJmyCCFOIO6QoGNNwqk/edit?usp=sharing)
 
 ## Tecnologias Utilizadas
 - **Python 3**
